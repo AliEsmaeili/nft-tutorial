@@ -67,6 +67,28 @@ export async function createCollection(
   }
 }
 
+export async function burnNfts(
+  owner: string,
+  collection: string,
+  tokens: BigNumber[]
+): Promise<void> {
+  if (tokens.length === 0)
+    return Promise.reject('there are no token ids provided');
+
+  const config = await loadConfig();
+  const tz = await createToolkit(owner, config);
+  const collectionAddress = await resolveAlias2Address(collection, config);
+  const ownerAddress = await tz.signer.publicKeyHash();
+
+  const nftContract = (await fa2.tezosApi(tz).at(collectionAddress))
+    .asNft()
+    .withBurn();
+
+  console.log(kleur.yellow('burning tokens...'));
+  await fa2.runMethod(nftContract.burn([{ owner: ownerAddress, tokens }]));
+  console.log(kleur.green('tokens burned'));
+}
+
 export async function mintNfts(
   owner: string,
   collection: string,

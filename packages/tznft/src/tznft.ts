@@ -182,6 +182,18 @@ program
 
 //prettier-ignore
 program
+  .command('burn')
+  .alias('b')
+  .description('burn tokens from existing token collection contract')
+  .arguments('<owner> <collection>')
+  .requiredOption(
+    '-t, --tokens <tokens...>',
+    'list of token ids')
+  .action(async (owner, collection, options) => 
+    contracts.burnNfts(owner, collection, options.tokens));
+    
+//prettier-ignore
+program
   .command('mint-from-file')
   .alias('mff')
   .description('mint new tokens into existing token collection contract')

@@ -5,8 +5,8 @@
 
 (* Choose one of the admin modules implementation *)
 
-(* #define USE_SIMPLE_ADMIN *)
-#define USE_PAUSABLE_SIMPLE_ADMIN
+#define USE_SIMPLE_ADMIN
+(* #define USE_PAUSABLE_SIMPLE_ADMIN *)
 (* #define USE_MULTI_ADMIN *)
 (* #define USE_NO_ADMIN *)
 
@@ -24,8 +24,8 @@ make sense if at least one of "CAN_MINT", "CAN_BURN" is selected.
 *)
 
 #define CAN_MINT
-(* #define CAN_BURN *)
-#define CAN_FREEZE
+#define CAN_BURN
+(* #define CAN_FREEZE *)
 
 (* Choose one of the FA2 core implementations *)
 
